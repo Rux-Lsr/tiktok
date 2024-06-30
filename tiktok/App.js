@@ -26,57 +26,21 @@ const Tab = createBottomTabNavigator();
 const AppTabs = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Videos" component={VideoList} />
-      <Tab.Screen name="Camera" component={Camera} />
-      <Tab.Screen name="Account" component={Account} />
+      <Tab.Screen name="Acceuil" component={HomeScreen} 
+      />
+      <Tab.Screen name="Decouvir" component={VideoList} />
+      <Tab.Screen name="Creer" component={Camera} />
+      <Tab.Screen name="Boite de reception" component={Account} />
+      <Tab.Screen name="Compte" component={Account} />
     </Tab.Navigator>
   );
 };
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [profileExists, setProfileExists] = useState(false);
-
-  useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(async (user) => {
-      if (user) {
-        setUser(user);
-        const profileExists = await doesUserProfileExist(user.uid);
-        setProfileExists(profileExists);
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {user ? (
-          profileExists ? (
-            <Stack.Screen name="AppTabs" component={AppTabs} options={{ headerShown: false }} />
-          ) : (
-            <Stack.Screen name="ProfileCreation" component={ProfileCreationScreen} />
-          )
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Signup" component={SignupScreen} />
-          </>
-        )}
+        <Stack.Screen name="AppTabs" component={AppTabs} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

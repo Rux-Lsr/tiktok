@@ -6,7 +6,7 @@ import {signUpWithEmailPassword, signUpWithPhone, sendVerificationCode} from '..
 import auth from '@react-native-firebase/auth';
 
 const HomeScreen = ({navigation}) => {
-    const userid = auth().currentUser.uid;
+   const userid = auth().currentUser.uid;
 
   return (
     <View style={styles.container}>

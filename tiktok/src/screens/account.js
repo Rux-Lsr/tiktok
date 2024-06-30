@@ -33,7 +33,7 @@ const Account = ({route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.displayName}>{userData.displayName}</Text>
+        <Text style={styles.displayName}>Russel</Text>
       </View>
       <Image source={{uri: userData.photoURL}} style={styles.photo} />
       <Text style={styles.username}>@{userData.email.split('@')[0]}</Text>
